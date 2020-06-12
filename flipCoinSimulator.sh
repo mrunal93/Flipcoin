@@ -9,15 +9,15 @@ coin["tails"]=0
 for (( count=0; count<=$noOfFlip; count++ ))
 do
 	dic=$(( $RANDOM % 2 ))
-	if (( $dic -eq 0 ))
+	if (( $dic > 0 ))
 	then
 		echo "Head"
-		coin["heads"]=$((${coin[$1]} + 1))
+		coin["heads"]=$((${coin[heads]} + 1))
 	else
 		echo "Tail"
-		coin["tails"]=$((${coin[$2]} + 1))
+		coin["tails"]=$((${coin[tails]} + 1))
 	fi
 done
-echo "Heads: ${coin[$1]}"
-echo "Tails: ${coin[$2]}"
+echo "Heads: ${coin[heads]}"
+echo "Tails: ${coin[tails]}"
 
