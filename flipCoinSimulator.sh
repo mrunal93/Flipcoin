@@ -2,21 +2,39 @@
 echo "Welcome to Simulation"
 
 declare -A coin
-noOfFlip=50
+noOfFlip=100
 coin["heads"]=0
 coin["tails"]=0
 
-for (( count=0; count<=$noOfFlip; count++ ))
+check_coin () {
+if ((${coin[heads]} == 21 ))
+        then
+                echo "Heads win"
+                
+        elif ((${coin[tails]} == 21 ))
+        then
+                echo "Tails win"
+                
+        elif (( ${coin[heads]} == ${coin[tails]} == 21 ))
+        then
+                echo "Its a Tai"
+                
+        fi
+}
+for ((count=0; noOfFlip>count; count++))
 do
 	dic=$(( $RANDOM % 2 ))
 	if (( $dic > 0 ))
 	then
-		echo "Head"
 		coin["heads"]=$((${coin[heads]} + 1))
+		check_coin
+		break
 	else
-		echo "Tail"
 		coin["tails"]=$((${coin[tails]} + 1))
+		check_coin
+		break
 	fi
+
 done
 echo "Heads: ${coin[heads]}"
 echo "Tails: ${coin[tails]}"
