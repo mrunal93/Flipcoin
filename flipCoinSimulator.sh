@@ -2,7 +2,7 @@
 echo "Welcome to Simulation"
 
 declare -A coin
-noOfFlip=100
+noOfFlip=45
 coin["heads"]=0
 coin["tails"]=0
 
@@ -13,7 +13,7 @@ do
 	if (( $dic > 0 ))
 	then
 		coin["heads"]=$((${coin[heads]} + 1))
-		
+
 	else
 		coin["tails"]=$((${coin[tails]} + 1))
 
@@ -23,15 +23,16 @@ done
 echo "Heads: ${coin[heads]}"
 echo "Tails: ${coin[tails]}"
 
-if ((${coin[heads]} == 21 ))
+if ((${coin[heads]} >= ${coin[tails]} ))
 then
  	echo "Heads win"
 
-elif ((${coin[tails]} == 21 ))
+elif ((${coin[tails]} >= ${coin[heads]} ))
 then
 	echo "Tails win"
-elif (( ${coin[heads]} == ${coin[tails]} == 21 ))
+elif (( ${coin[heads]} == ${coin[tails]}  ))
 then
 	echo "Its a Tai"
 
 fi
+
